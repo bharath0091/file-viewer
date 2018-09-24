@@ -7,8 +7,15 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('Should display header text and file input on load', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to file-viewer!');
+    expect(page.getHeaderText()).toEqual('Employee CSV File Viewer');
+    expect(page.getInputToFileUpload().isPresent()).toEqual(true);
+  });
+
+  it('Should display file content when the file is selected', () => {
+    page.navigateTo();
+    page.uploadFile('issues.csv');
+    expect(page.getLoadedIssuesTable()).toBeTruthy();
   });
 });

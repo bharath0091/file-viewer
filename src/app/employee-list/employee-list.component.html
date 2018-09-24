@@ -1,0 +1,18 @@
+<div class="padding">
+  <div *ngIf="headers">
+    <label>Search by Issue count </label>
+    <input #searchValue type="search" (keyup)="filterBy(3, searchValue.value)" title="Filter by issue count">
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr class="table-primary">
+      <th scope="col" *ngFor="let header of headers">{{header}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of rows | resultsFilter:filterObject">
+      <td *ngFor="let field of row">{{field}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
